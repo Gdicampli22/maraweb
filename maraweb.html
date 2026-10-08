@@ -41,9 +41,22 @@
             position: relative;
         }
 
-        /* Gradiente de luz de vela de fondo */
+        /* 
+          =========================================================
+          FONDO SUPERIOR CON SOPORTE PARA GIF
+          =========================================================
+          Aquí puedes colocar tu GIF de fondo. 
+          Ejemplo: url('music/tu-fondo.gif') o url('fondo.gif')
+          Si no quieres poner gif por ahora, simplemente borra o comenta 
+          la línea que dice url('...').
+        */
         .bg-candle {
-            background: radial-gradient(circle at center, rgba(74, 14, 27, 0.4) 0%, rgba(10, 14, 23, 1) 70%);
+            background: linear-gradient(to bottom, rgba(10, 14, 23, 0.7), rgba(10, 14, 23, 0.95)), 
+                        url('videos/fondo.gif'), 
+                        radial-gradient(circle at center, rgba(74, 14, 27, 0.4) 0%, rgba(10, 14, 23, 1) 70%);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         /* Efecto Glassmorphism Premium */
@@ -139,13 +152,13 @@
                     <div class="w-24 h-1 bg-wine mx-auto rounded-full"></div>
                 </div>
 
-                <!-- CONTENEDOR DEL SLIDER CENTRADO -->
-                <div class="flex flex-row flex-nowrap overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar max-w-full md:mx-auto md:w-max">
+                <!-- CONTENEDOR DEL SLIDER PERFECTAMENTE CENTRADO -->
+                <div class="flex flex-row flex-nowrap overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar max-w-full md:mx-auto md:w-max md:justify-center">
                     
                     <!-- Video 1 -->
                     <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
                         <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
-                            <source src="video1.mp4" type="video/mp4">
+                            <source src="videos/video1.mp4" type="video/mp4">
                         </video>
                         <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
                     </div>
@@ -153,7 +166,7 @@
                     <!-- Video 2 -->
                     <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
                         <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
-                            <source src="video2.mp4" type="video/mp4">
+                            <source src="videos/video2.mp4" type="video/mp4">
                         </video>
                         <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
                     </div>
@@ -161,7 +174,7 @@
                     <!-- Video 3 -->
                     <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
                         <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
-                            <source src="video3.mp4" type="video/mp4">
+                            <source src="videos/video3.mp4" type="video/mp4">
                         </video>
                         <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
                     </div>
@@ -236,7 +249,7 @@
 
     <!-- ================= SCRIPTS ================= -->
     <script>
-        // 1. Lógica de Audio Multi-Pista (Apuntando a la carpeta "music")
+        // 1. Lógica de Audio Multi-Pista desde la carpeta "music"
         const tracks = [
             "music/pista1.mp3", 
             "music/pista2.mp3", 
@@ -262,7 +275,7 @@
                 audioText.innerText = "Silenciar";
                 nextTrackBtn.classList.remove('hidden');
             }).catch(error => {
-                console.log("Autoplay bloqueado por políticas del navegador. Requiere interacción.");
+                console.log("Autoplay bloqueado por políticas del navegador. Requiere interacción del usuario.");
                 isPlaying = false;
             });
         });
