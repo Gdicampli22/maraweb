@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mara | Tarot y Runas - Guía Espiritual</title>
+    
+    <!-- Fuentes premium de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Iconografía FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN para despliegue rápido) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        night: '#0A0E17',
+                        wine: '#4A0E1B',
+                        gold: '#D4AF37',
+                        goldlight: '#F3E5AB'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Esotéricos Personalizados */
+        body {
+            background-color: #0A0E17;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Gradiente de luz de vela de fondo */
+        .bg-candle {
+            background: radial-gradient(circle at center, rgba(74, 14, 27, 0.4) 0%, rgba(10, 14, 23, 1) 70%);
+        }
+
+        /* Efecto Glassmorphism Premium */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Efectos Glow (Resplandor Dorado) */
+        .text-glow { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .box-glow:hover { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); border-color: rgba(212, 175, 55, 0.8); }
+
+        /* Partículas flotantes */
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #F3E5AB 0%, rgba(212,175,55,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 0.8; }
+        }
+
+        /* Animación Botón WhatsApp Latiente */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .btn-whatsapp { animation: pulse-gold 2s infinite; }
+
+        /* Ocultar scrollbar en slider de videos */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Contenedor de Partículas -->
+    <div id="particles-container" class="fixed inset-0 z-0 pointer-events-none overflow-hidden"></div>
+
+    <main class="relative z-10">
+        
+        <!-- ================= HERO SECTION ================= -->
+        <section class="relative min-h-screen flex flex-col justify-center items-center text-center px-6 bg-candle">
+            
+            <!-- Botón Audio Flotante Superior y Selector de Pistas -->
+            <div class="absolute top-6 right-6 md:top-10 md:right-10 flex gap-2 z-50">
+                <button id="audio-btn" class="glass px-4 py-2 rounded-full text-goldlight hover:text-white transition-all text-sm tracking-widest uppercase flex items-center gap-2 cursor-pointer box-glow">
+                    <i class="fas fa-volume-mute" id="audio-icon"></i>
+                    <span id="audio-text">Despertar la intuición</span>
+                </button>
+                
+                <!-- Botón de siguiente pista -->
+                <button id="next-track-btn" class="glass px-4 py-2 rounded-full text-goldlight hover:text-white transition-all cursor-pointer box-glow hidden" title="Cambiar melodía">
+                    <i class="fas fa-forward-step"></i>
+                </button>
+            </div>
+
+            <!-- Etiqueta de audio -->
+            <audio id="ambient-audio" loop></audio>
+
+            <div class="max-w-3xl mx-auto pt-20">
+                <p class="text-gold tracking-[0.3em] text-sm uppercase mb-4 opacity-80">Conecta con tu destino</p>
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-goldlight via-gold to-yellow-600 mb-6 text-glow leading-tight">
+                    Mara <br><span class="text-3xl md:text-5xl italic font-light">— Tarot ✦ Runas —</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-light mb-12 leading-relaxed">
+                    Guía espiritual para tu camino. <br><strong class="text-white font-normal">Más de 20 años de experiencia.</strong>
+                </p>
+                <a href="https://wa.me/5493517057854?text=Hola%20Mara,%20quisiera%20información%20sobre%20una%20consulta" target="_blank" class="inline-block bg-gradient-to-r from-gold to-yellow-600 text-night font-semibold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                    <i class="fab fa-whatsapp mr-2 text-xl align-middle"></i> Consultar ahora por WhatsApp
+                </a>
+            </div>
+            
+            <div class="absolute bottom-10 animate-bounce text-gold opacity-50">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN: EL ORÁCULO (VIDEOS) ================= -->
+        <section class="py-24 px-6 relative w-full">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-4xl md:text-5xl text-goldlight mb-4">Conecta con tu intuición</h2>
+                    <div class="w-24 h-1 bg-wine mx-auto rounded-full"></div>
+                </div>
+
+                <!-- CONTENEDOR DEL SLIDER CENTRADO -->
+                <div class="flex flex-row flex-nowrap overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar max-w-full md:mx-auto md:w-max">
+                    
+                    <!-- Video 1 -->
+                    <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
+                        <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
+                            <source src="video1.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
+                        <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
+                            <source src="video2.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="snap-center shrink-0 w-[280px] md:w-[320px] aspect-[9/16] glass rounded-3xl overflow-hidden relative box-glow group">
+                        <video class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" autoplay loop muted playsinline>
+                            <source src="video3.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN: CAMINOS DE SANACIÓN ================= -->
+        <section class="py-24 px-6 relative bg-night bg-opacity-80">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass p-8 rounded-2xl text-center box-glow transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-4xl text-gold mb-6"><i class="fas fa-sun"></i></div>
+                    <h3 class="font-serif text-2xl text-goldlight mb-2">Tarot</h3>
+                    <p class="text-white font-medium mb-3">Respuestas a tus dudas.</p>
+                    <p class="text-sm text-gray-400 font-light">El espejo del alma que revela lo oculto para que tomes las mejores decisiones.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center box-glow transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-4xl text-gold mb-6"><i class="fa-brands fa-envira"></i></div>
+                    <h3 class="font-serif text-2xl text-goldlight mb-2">Runas</h3>
+                    <p class="text-white font-medium mb-3">Orientación y claridad.</p>
+                    <p class="text-sm text-gray-400 font-light">La sabiduría ancestral vikinga lanzada para iluminar tu destino.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center box-glow transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-4xl text-gold mb-6"><i class="fas fa-shield-halved"></i></div>
+                    <h3 class="font-serif text-2xl text-goldlight mb-2">Amboloquejo</h3>
+                    <p class="text-white font-medium mb-3">Protecciones energéticas.</p>
+                    <p class="text-sm text-gray-400 font-light">Sellado áurico y escudos espirituales para bloquear bajas vibraciones.</p>
+                </div>
+                <div class="glass p-8 rounded-2xl text-center box-glow transition-all duration-500 hover:-translate-y-2">
+                    <div class="text-4xl text-gold mb-6"><i class="fas fa-spa"></i></div>
+                    <h3 class="font-serif text-2xl text-goldlight mb-2">Sanaciones</h3>
+                    <p class="text-white font-medium mb-3">Equilibrio y bienestar.</p>
+                    <p class="text-sm text-gray-400 font-light">Restauración de tu campo energético para atraer paz y armonía.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECCIÓN: MODALIDAD Y CONFIANZA ================= -->
+        <section class="py-20 px-6 border-t border-wine border-opacity-30">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="font-serif text-3xl text-goldlight mb-8">Atención a distancia y a domicilio</h3>
+                <p class="text-gray-300 mb-6 font-light">Comodidad, seguridad y absoluta confidencialidad. Medios de pago aceptados:</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 text-3xl text-gray-500">
+                    <div class="flex flex-col items-center gap-2 hover:text-gold transition-colors">
+                        <i class="fas fa-handshake"></i><span class="text-xs font-sans tracking-wide">Mercado Pago</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 hover:text-gold transition-colors">
+                        <i class="fas fa-credit-card"></i><span class="text-xs font-sans tracking-wide">Tarjetas</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 hover:text-gold transition-colors">
+                        <i class="fas fa-building-columns"></i><span class="text-xs font-sans tracking-wide">Transferencia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="py-8 bg-[#05070a] text-center px-6">
+            <p class="font-serif text-goldlight italic mb-2">"La magia comienza cuando decides creer."</p>
+            <p class="text-xs text-gray-600 font-sans tracking-widest">© 2026 Mara Tarot y Runas. Todos los derechos reservados.</p>
+        </footer>
+
+    </main>
+
+    <!-- ================= BOTÓN FLOTANTE WHATSAPP ================= -->
+    <a href="https://wa.me/5493517057854?text=Hola%20Mara,%20quisiera%20información%20sobre%20una%20consulta" 
+       target="_blank" 
+       class="fixed bottom-6 right-6 bg-[#25D366] text-white w-14 h-14 rounded-full flex justify-center items-center text-3xl z-50 btn-whatsapp hover:bg-[#20b858] transition-colors">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ================= SCRIPTS ================= -->
+    <script>
+        // 1. Lógica de Audio Multi-Pista (Apuntando a la carpeta "music")
+        const tracks = [
+            "music/pista1.mp3", 
+            "music/pista2.mp3", 
+            "music/pista3.mp3"
+        ];
+        let currentTrackIndex = 0;
+
+        const audioBtn = document.getElementById('audio-btn');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+        const nextTrackBtn = document.getElementById('next-track-btn');
+        const audio = document.getElementById('ambient-audio');
+        let isPlaying = false;
+
+        audio.src = tracks[currentTrackIndex];
+        audio.volume = 0.3;
+
+        // Intento de reproducción automática al cargar
+        window.addEventListener('DOMContentLoaded', () => {
+            audio.play().then(() => {
+                isPlaying = true;
+                audioIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+                audioText.innerText = "Silenciar";
+                nextTrackBtn.classList.remove('hidden');
+            }).catch(error => {
+                console.log("Autoplay bloqueado por políticas del navegador. Requiere interacción.");
+                isPlaying = false;
+            });
+        });
+
+        audioBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                audioIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+                audioText.innerText = "Despertar la intuición";
+                nextTrackBtn.classList.add('hidden');
+            } else {
+                audio.play();
+                audioIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+                audioText.innerText = "Silenciar";
+                nextTrackBtn.classList.remove('hidden');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        nextTrackBtn.addEventListener('click', () => {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            audio.src = tracks[currentTrackIndex];
+            if (isPlaying) {
+                audio.play();
+            }
+        });
+
+        // 2. Generador de Partículas Místicas
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        window.onload = createParticles;
+    </script>
+</body>
+</html>
